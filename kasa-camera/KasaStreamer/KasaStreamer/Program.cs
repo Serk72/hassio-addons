@@ -23,13 +23,16 @@ namespace KasaStreamer
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             // Setup configuration
+	    Console.WriteLine("Loading Config");
             var config = LoadConfiguration();
+	    Console.WriteLine("Config Loaded");
             var parsedConfig = config.Get<Configuration>();
-
+	    Console.WriteLine("Config Parsed");
             return Host.CreateDefaultBuilder(args)
 
                 .ConfigureServices(services =>
                 {
+		    Console.WriteLine("Configuring services");
                     services.AddSingleton(parsedConfig);
                     services.AddSingleton(config);
 
